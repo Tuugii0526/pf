@@ -1,0 +1,9 @@
+{
+  "nav": {
+    "links": {
+      "home": "Home",
+      "works": "Works",
+      "blogs": "Blogs"
+    }
+  }
+}
