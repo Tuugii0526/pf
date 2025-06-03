@@ -1,0 +1,9 @@
+---
+date: "2025-06-03T09:43:25.419Z"
+category: greeting
+title: Greet mo
+layout: blog-post
+author: Tuguldur
+---
+
+Hello ? Сайн байна уу ?

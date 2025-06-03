@@ -1,24 +1,18 @@
-export const getNavs = (
-  langCode: string,
-  links: {
-    home: string;
-    works: string;
-    blogs: string;
-  }
-) => [
+export const getNavs = (langCode: string) => [
   {
     id: 1,
     href: `/${langCode}`,
-    label: links?.home,
+    label: "🏡",
   },
   {
     id: 2,
     href: `/${langCode}/blogs`,
-    label: links?.blogs,
+    label: "📝",
   },
   {
     id: 3,
     href: `/${langCode}/works`,
-    label: links?.works,
+    label: "💻",
   },
 ];
+//

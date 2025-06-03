@@ -13,14 +13,14 @@ export default function RootLayout({
 }>) {
   return (
     <html suppressHydrationWarning>
-      <body className="w-full">
+      <body className="w-full *:text-foreground ">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <div className="m-auto w-full min-w-[240px] max-w-[760px] p-[10px] sm:p-[20px]">
+          <div className="m-auto w-full h-full min-w-[240px] max-w-[760px] bg-background  p-[10px]">
             {children}
           </div>
         </ThemeProvider>

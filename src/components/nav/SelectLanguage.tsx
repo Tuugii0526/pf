@@ -19,7 +19,7 @@ export const SelectLanguage = () => {
   };
   return (
     <select
-      className={`${oswald.className} outline-none rounded-xl bg-[#e1e1e6]  *:text-[#5c5457] absolute right-[20%]`}
+      className={`${oswald.className} outline-none rounded-xl   *:text-[#5c5457] `}
       onChange={onLanguageChange}
       name="language"
       id="lan"

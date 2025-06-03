@@ -1,3 +1,3 @@
 export default async function Home() {
-  return <div className="text-warning">main</div>;
+  return <div>Hi this is main</div>;
 }

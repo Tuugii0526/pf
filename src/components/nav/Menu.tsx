@@ -1,11 +1,15 @@
 "use client";
 
-import { useIsMobile } from "@/hooks/use-mobile";
-import { Fragment } from "react";
-import { MobileMenu } from "./MobileMenu";
-import { DesktopMenu } from "./DesktopMenu";
+import { useIsMounted } from "@/hooks/use-is-mounted";
+import { SelectLanguage } from "./SelectLanguage";
+import ThemeToggle from "./ThemeToggle";
 
 export const Menu = () => {
-  const isMobile = useIsMobile();
-  return <Fragment>{isMobile ? <MobileMenu /> : <DesktopMenu />}</Fragment>;
+  const isMounted = useIsMounted();
+  return (
+    <div className="flex justify-end items-center ">
+      {isMounted && <ThemeToggle />}
+      <SelectLanguage />
+    </div>
+  );
 };
