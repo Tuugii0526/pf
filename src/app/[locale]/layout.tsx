@@ -4,25 +4,42 @@ import { PropsWithChildren } from "react";
 import { languageCodes } from "../../lib/types/i18n";
 import { Header } from "@/components/shared/Header";
 import { Footer } from "@/components/shared/Footer";
-
+import { ThemeProvider } from "@/components/context/ThemeProvider";
+import "../globals.css";
 export const metadata = {
   title: "Tuguldur Namjildorj",
-  description: "Twitch ",
+  description: "Grow together ",
 };
 
 export default async function RootLayout({
   children,
   params,
 }: PropsWithChildren<{
-  params: Promise<{ locale: languageCodes }>;
+  params: Promise<{ locale: languageCodes; path: Array<string> }>;
 }>) {
-  const locale = (await params).locale;
+  const { locale, path = [] } = await params;
+  console.log("path:", path);
   const dict = await getDictionary(locale);
   return (
-    <LanguageProvider dictionary={dict} currentLanguage={locale}>
-      <Header />
-      {children}
-      <Footer />
-    </LanguageProvider>
+    <html suppressHydrationWarning lang={locale}>
+      <body className=" h-screen *:text-foreground ">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <LanguageProvider dictionary={dict} currentLanguage={locale}>
+            <div className="m-auto w-full h-full min-w-[240px] max-w-[760px] bg-background p-[10px]">
+              <div className="relative w-full h-full flex flex-col gap-5">
+                <Header />
+                {children}
+                <Footer />
+              </div>
+            </div>
+          </LanguageProvider>
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }
