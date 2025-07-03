@@ -50,7 +50,6 @@ const generateBlogData = async () => {
   // We retrieve the full pathnames of all Blog Posts to read each file individually
   const filenames = await getMarkdownFiles(process.cwd(), "src/pages/en/blog", [
     "**/index.md",
-    "**/node_modules/**",
   ]);
   /**j
    * This contains the metadata of all available blog categories
