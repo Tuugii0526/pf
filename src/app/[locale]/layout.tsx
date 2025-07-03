@@ -15,10 +15,9 @@ export default async function RootLayout({
   children,
   params,
 }: PropsWithChildren<{
-  params: Promise<{ locale: languageCodes; path: Array<string> }>;
+  params: Promise<{ locale: languageCodes }>;
 }>) {
-  const { locale, path = [] } = await params;
-  console.log("path:", path);
+  const { locale } = await params;
   const dict = await getDictionary(locale);
   return (
     <html suppressHydrationWarning lang={locale}>
