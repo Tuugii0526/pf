@@ -6,21 +6,48 @@
       "author": "Tuguldur",
       "date": "2025-06-03T08:52:46.598Z",
       "categories": ["programming", "year-2025", "all"],
-      "slug": "/blog/programming/try1"
+      "slug": "/try2",
+      "language": "en"
     },
     {
-      "title": "Эхлэл",
+      "title": "If start is good , the end is good",
       "author": "Tuguldur",
       "date": "2025-06-02T21:20:59.941Z",
       "categories": ["programming", "year-2025", "all"],
-      "slug": "/blog/programming/try"
+      "slug": "/try",
+      "language": "en"
     },
     {
-      "title": "Greet mo",
+      "title": "Greet hello",
       "author": "Tuguldur",
       "date": "2025-06-03T09:43:25.419Z",
       "categories": ["greeting", "year-2025", "all"],
-      "slug": "/blog/greeting/hello"
+      "slug": "/hello",
+      "language": "en"
+    },
+    {
+      "title": "Хичээ хичээ",
+      "author": "Төгөлдөр",
+      "date": "2025-06-03T08:52:46.598Z",
+      "categories": ["programming", "year-2025", "all"],
+      "slug": "/try2",
+      "language": "mn"
+    },
+    {
+      "title": "Гараа сайн бол бараа сайн",
+      "author": "Төгөлдөр",
+      "date": "2025-06-02T21:20:59.941Z",
+      "categories": ["programming", "year-2025", "all"],
+      "slug": "/try",
+      "language": "mn"
+    },
+    {
+      "title": "Сайнуу хэмээн мэндлээрэй",
+      "author": "Төгөлдөр",
+      "date": "2025-06-03T09:43:25.419Z",
+      "categories": ["greeting", "year-2025", "all"],
+      "slug": "/hello",
+      "language": "mn"
     }
   ]
 }

@@ -1,3 +1,5 @@
+import { languageCodes } from "@/lib/types/i18n";
+
 export interface BlogPost {
   title: string;
   author: string;
@@ -5,6 +7,7 @@ export interface BlogPost {
   date: Date;
   categories: unknown;
   slug: string;
+  language: languageCodes;
 }
 
 export interface BlogData {
