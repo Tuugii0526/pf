@@ -5,10 +5,9 @@ import { languageCodes } from "./lib/types/i18n";
 const locales: languageCodes[] = ["en", "mn"];
 const defaultLocale = "mn";
 export function middleware(request: NextRequest) {
-  // const acceptLanguage = request.headers.get('accept-language');
   const { pathname } = request.nextUrl;
-  const pathnameHasLocale = locales.some(
-    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+  const pathnameHasLocale = locales.some((locale) =>
+    pathname.startsWith(`/${locale}`)
   );
   if (pathnameHasLocale) return;
   const localLanguage = getLocale(request, locales, defaultLocale);

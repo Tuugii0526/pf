@@ -2,15 +2,17 @@ import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import fs from "fs";
 import path from "path";
+import { languageCodes } from "./types/i18n";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
 type Metadata = {
+  date: string;
+  category: string;
   title: string;
-  publishedAt: string;
-  summary: string;
-  image?: string;
+  author: string;
+  language: string;
 };
 
 function parseFrontmatter(fileContent: string) {
@@ -54,9 +56,9 @@ function getMDXData(dir: string) {
   });
 }
 
-export function getBlogPosts() {
+export function getBlogPosts({ lang }: { lang: languageCodes }) {
   return getMDXData(
-    path.join(process.cwd(), "src", "pages", "en", "blog", "programming")
+    path.join(process.cwd(), "src", "pages", lang, "blog", "programming")
   );
 }
 

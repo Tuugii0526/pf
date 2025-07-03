@@ -6,18 +6,15 @@ import { useParams, usePathname, useRouter } from "next/navigation";
 export const SelectLanguage = () => {
   const router = useRouter();
   const pathName = usePathname();
-  const params = useParams<{ locale: "en" | "mn" }>();
-  const locale = params?.locale ?? "en";
+  const params = useParams<{ locale: "en" | "mn"; slug: string }>();
+  const locale = params?.locale;
+
   const onLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newLang = e.target.value;
-    let newPath;
     if (!pathName) return;
-    if (pathName.split("/").length == 2) {
-      newPath = pathName.replace(/\/.+/i, `/${newLang}`);
-    } else {
-      newPath = pathName.replace(/\/.+\//i, `/${newLang}/`);
-    }
-    router.replace(newPath);
+    const paths = pathName.split("/");
+    paths[1] = newLang;
+    router.replace(paths.join("/"));
   };
   return (
     <select

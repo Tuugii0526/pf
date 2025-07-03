@@ -6,9 +6,7 @@ import readline from "node:readline";
 
 import graymatter from "gray-matter";
 import { getMarkdownFiles } from "../../next.helper.mjs";
-
-// gets the current blog path based on local module path
-const blogPath = join(process.cwd(), "src/pages/en/blog");
+const blogPath = join(process.cwd(), "src/pages");
 
 /**
  * This method parses the source (raw) Markdown content into Frontmatter
@@ -20,10 +18,11 @@ const blogPath = join(process.cwd(), "src/pages/en/blog");
 const getFrontMatter = (filename, source) => {
   const {
     title = "Untitled",
-    author = "The Node.js Project",
+    author = "Tuguldur",
     username,
     date = new Date(),
     category = "uncategorized",
+    language,
   } = graymatter(source).data;
 
   // We also use publishing years as categories for the blog
@@ -34,9 +33,17 @@ const getFrontMatter = (filename, source) => {
   const categories = [category, `year-${publishYear}`, "all"];
 
   // this is the url used for the blog post it based on the category and filename
-  const slug = `/blog/${category}/${basename(filename, extname(filename))}`;
+  const slug = `/${basename(filename, extname(filename))}`;
 
-  return { title, author, username, date: new Date(date), categories, slug };
+  return {
+    title,
+    author,
+    username,
+    date: new Date(date),
+    categories,
+    slug,
+    language,
+  };
 };
 
 /**
@@ -48,12 +55,11 @@ const getFrontMatter = (filename, source) => {
 
 const generateBlogData = async () => {
   // We retrieve the full pathnames of all Blog Posts to read each file individually
-  const filenames = await getMarkdownFiles(process.cwd(), "src/pages/en/blog", [
-    "**/index.md",
-  ]);
+  const filenames = await getMarkdownFiles(process.cwd(), "src/pages");
   /**j
    * This contains the metadata of all available blog categories
    */
+
   const blogCategories = new Set(["all"]);
 
   const posts = await Promise.all(

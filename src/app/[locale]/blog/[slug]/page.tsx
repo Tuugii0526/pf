@@ -1,13 +1,17 @@
+import { languageCodes } from "@/lib/types/i18n";
 import { getBlogPosts } from "@/lib/utils";
 import { MDXRemote } from "next-mdx-remote/rsc";
 
 export default async function Page({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: languageCodes; slug: string }>;
 }) {
-  const { slug } = await params;
-  const post = getBlogPosts().find((post) => post.slug === slug);
+  const { slug, locale } = await params;
+
+  const post = getBlogPosts({
+    lang: locale,
+  }).find((post) => post.slug === slug && locale == post.metadata.language);
   if (!post) {
     return;
   }
@@ -18,4 +22,4 @@ export function generateStaticParams() {
   return [{ slug: "hello" }, { slug: "try" }];
 }
 
-export const dynamicParams = false;
+// export const dynamicParams = false;

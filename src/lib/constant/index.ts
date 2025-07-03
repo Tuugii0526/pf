@@ -6,7 +6,7 @@ export const getNavs = (langCode: string) => [
   },
   {
     id: 2,
-    href: `/${langCode}/blogs`,
+    href: `/${langCode}/blog`,
     label: "📝",
   },
   {
