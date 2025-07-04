@@ -13,7 +13,7 @@ export default async function Page({
     <div className="flex flex-col gap-2 ">
       <p>Blogs</p>
       <div className="flex gap-2">
-        {blogData.posts.map((blog) => {
+        {blogData.posts[locale].map((blog) => {
           if (blog?.language == locale) {
             return (
               <Blog
