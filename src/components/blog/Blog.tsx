@@ -10,7 +10,7 @@ export const Blog = ({
   locale: languageCodes;
 }) => {
   return (
-    <Link href={`/${locale}${blog?.slug}`}>
+    <Link href={`/${locale}/blog${blog?.slug}`}>
       <div className="flex flex-col bg-amber-300 p-4 rounded-2xl cursor-pointer">
         <div>title:{blog.title}</div>
         <div>author:{blog.author}</div>

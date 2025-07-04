@@ -3,11 +3,10 @@ import { twMerge } from "tailwind-merge";
 import fs from "fs";
 import path from "path";
 import { languageCodes } from "./types/i18n";
-import { metadata } from "@/app/[locale]/layout";
+import { blogData } from "@/next.json.mjs";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
-
 type Metadata = {
   date: string;
   category: string;
@@ -15,7 +14,12 @@ type Metadata = {
   author: string;
   language: string;
 };
-
+const pathMap: Map<string, string> = new Map();
+for (const [key, value] of Object.entries(blogData.posts)) {
+  value.forEach((blog) => {
+    pathMap.set(`${key}${blog.slug}`, `${key}${blog.slug}`);
+  });
+}
 function parseFrontmatter(fileContent: string) {
   const frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
   const match = frontmatterRegex.exec(fileContent);
@@ -34,10 +38,6 @@ function parseFrontmatter(fileContent: string) {
   return { metadata: metadata as Metadata, content };
 }
 
-function getMDXFiles(dir: string) {
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
-}
-
 function readMDXFile(filePath: fs.PathOrFileDescriptor) {
   try {
     const rawContent = fs.readFileSync(filePath, "utf-8");
@@ -48,19 +48,6 @@ function readMDXFile(filePath: fs.PathOrFileDescriptor) {
   }
 }
 
-function getMDXData(dir: string) {
-  const mdxFiles = getMDXFiles(dir);
-  return mdxFiles.map((file) => {
-    const { metadata, content } = readMDXFile(path.join(dir, file));
-    const slug = path.basename(file, path.extname(file));
-
-    return {
-      metadata,
-      slug,
-      content,
-    };
-  });
-}
 export function getBlog({
   lang,
   fileName,
@@ -68,15 +55,16 @@ export function getBlog({
   lang: languageCodes;
   fileName: string;
 }) {
+  if (!pathMap.has(`${lang}/${fileName}`)) {
+    return {
+      metadata: null,
+      content: null,
+    };
+  }
   const { metadata, content } = readMDXFile(
-    path.join(process.cwd(), "src", "content", lang, "blog", fileName)
+    path.join(process.cwd(), "src", "content", lang, "blog", fileName + ".mdx")
   );
   return { metadata, content };
-}
-export function getBlogPosts({ lang }: { lang: languageCodes }) {
-  return getMDXData(
-    path.join(process.cwd(), "src", "pages", lang, "blog", "programming")
-  );
 }
 
 export function formatDate(date: string, includeRelative = false) {

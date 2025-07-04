@@ -10,7 +10,7 @@ export default async function Page({
   const { path, locale } = await params;
   const post = getBlog({
     lang: locale,
-    fileName: path.join("/") + ".mdx",
+    fileName: path.join("/"),
   });
   if (!post.content) {
     return <div>Empty</div>;
