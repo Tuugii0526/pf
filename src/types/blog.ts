@@ -8,9 +8,12 @@ export interface BlogPost {
   categories: unknown;
   slug: string;
   language: languageCodes;
+  id: number;
 }
 
 export interface BlogData {
-  posts: Array<BlogPost>;
+  posts: {
+    [K in languageCodes]: Array<BlogPost>;
+  };
   categories: unknown;
 }

@@ -15,4 +15,3 @@ export const getNavs = (langCode: string) => [
     label: "💻",
   },
 ];
-//
