@@ -6,7 +6,7 @@ import readline from "node:readline";
 
 import graymatter from "gray-matter";
 import { getMarkdownFiles } from "../../next.helper.mjs";
-const blogPath = join(process.cwd(), "src/pages");
+const blogPath = join(process.cwd(), "src/content");
 /**
  * This method parses the source (raw) Markdown content into Frontmatter
  * and returns basic information for blog posts
@@ -32,7 +32,7 @@ const getFrontMatter = (filename, source) => {
   const categories = [category, `year-${publishYear}`, "all"];
 
   // this is the url used for the blog post it based on the category and filename
-  let regexPattern = new RegExp(language);
+  let regexPattern = new RegExp(`${language}/blog`);
   const slug = filename
     .replace(regexPattern, "")
     .split(".")
@@ -59,7 +59,7 @@ const getFrontMatter = (filename, source) => {
 
 const generateBlogData = async () => {
   // We retrieve the full pathnames of all Blog Posts to read each file individually
-  const filenames = await getMarkdownFiles(process.cwd(), "src/pages");
+  const filenames = await getMarkdownFiles(process.cwd(), "src/content");
   /**j
    * This contains the metadata of all available blog categories
    */

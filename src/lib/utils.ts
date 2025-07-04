@@ -3,6 +3,7 @@ import { twMerge } from "tailwind-merge";
 import fs from "fs";
 import path from "path";
 import { languageCodes } from "./types/i18n";
+import { metadata } from "@/app/[locale]/layout";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -38,8 +39,13 @@ function getMDXFiles(dir: string) {
 }
 
 function readMDXFile(filePath: fs.PathOrFileDescriptor) {
-  const rawContent = fs.readFileSync(filePath, "utf-8");
-  return parseFrontmatter(rawContent);
+  try {
+    const rawContent = fs.readFileSync(filePath, "utf-8");
+    return parseFrontmatter(rawContent);
+  } catch (error) {
+    console.log(error);
+    return { metadata: null, content: null };
+  }
 }
 
 function getMDXData(dir: string) {
@@ -55,7 +61,18 @@ function getMDXData(dir: string) {
     };
   });
 }
-
+export function getBlog({
+  lang,
+  fileName,
+}: {
+  lang: languageCodes;
+  fileName: string;
+}) {
+  const { metadata, content } = readMDXFile(
+    path.join(process.cwd(), "src", "content", lang, "blog", fileName)
+  );
+  return { metadata, content };
+}
 export function getBlogPosts({ lang }: { lang: languageCodes }) {
   return getMDXData(
     path.join(process.cwd(), "src", "pages", lang, "blog", "programming")
