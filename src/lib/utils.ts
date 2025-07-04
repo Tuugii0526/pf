@@ -14,10 +14,16 @@ type Metadata = {
   author: string;
   language: string;
 };
-const pathMap: Map<string, string> = new Map();
+const pathMap: Map<
+  string,
+  null | {
+    metadata: Metadata;
+    content: string;
+  }
+> = new Map();
 for (const [key, value] of Object.entries(blogData.posts)) {
   value.forEach((blog) => {
-    pathMap.set(`${key}${blog.slug}`, `${key}${blog.slug}`);
+    pathMap.set(`${key}${blog.slug}`, null);
   });
 }
 function parseFrontmatter(fileContent: string) {
@@ -61,10 +67,31 @@ export function getBlog({
       content: null,
     };
   }
-  const { metadata, content } = readMDXFile(
-    path.join(process.cwd(), "src", "content", lang, "blog", fileName + ".mdx")
-  );
-  return { metadata, content };
+  const result = pathMap.get(`${lang}/${fileName}`);
+  if (!result) {
+    const { metadata, content } = readMDXFile(
+      path.join(
+        process.cwd(),
+        "src",
+        "content",
+        lang,
+        "blog",
+        fileName + ".mdx"
+      )
+    );
+    if (content && metadata) {
+      pathMap.set(`${lang}/${fileName}`, {
+        metadata,
+        content,
+      });
+      return { metadata, content };
+    }
+    return {
+      metadata: null,
+      content: null,
+    };
+  }
+  return result;
 }
 
 export function formatDate(date: string, includeRelative = false) {
