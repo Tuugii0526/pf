@@ -74,8 +74,6 @@ export function getBlog({
   lang: languageCodes;
   fileName: string;
 }) {
-  console.log(pathMap);
-
   if (!pathMap.has(`${lang}/${fileName}`)) {
     return {
       metadata: null,

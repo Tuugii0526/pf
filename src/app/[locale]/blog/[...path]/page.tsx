@@ -8,8 +8,6 @@ export default async function Page({
   params: Promise<{ locale: languageCodes; path: Array<string> }>;
 }) {
   const { path, locale } = await params;
-  console.log("path:", path);
-
   const post = getBlog({
     lang: locale,
     fileName: path.join("/"),
