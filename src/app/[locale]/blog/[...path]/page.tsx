@@ -1,7 +1,9 @@
 import { languageCodes } from "@/lib/types/i18n";
-import { getBlog } from "@/lib/utils";
+import { getBlog, getLangPathParams } from "@/lib/utils";
 import { MDXRemote } from "next-mdx-remote/rsc";
-
+export const generateStaticParams = async () => {
+  return getLangPathParams();
+};
 export default async function Page({
   params,
 }: {
