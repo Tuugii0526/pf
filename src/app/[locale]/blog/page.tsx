@@ -1,6 +1,10 @@
 import { languageCodes } from "@/lib/types/i18n";
 import { blogData } from "../../../next.json.mjs";
 import { Blog } from "@/components/blog/Blog";
+import { getLangPathParams } from "@/lib/utils";
+export const generateStaticParams = async () => {
+  return getLangPathParams();
+};
 export default async function Page({
   params,
 }: {

@@ -26,6 +26,19 @@ for (const [key, value] of Object.entries(blogData.posts)) {
     pathMap.set(`${key}${blog.slug}`, null);
   });
 }
+export function getLangPathParams() {
+  const result: { locale: languageCodes; path: string[] }[] = [];
+  for (const [key, value] of Object.entries(blogData.posts)) {
+    value.forEach((blog) => {
+      const paths = blog.slug.split("/");
+      result.push({
+        locale: key as languageCodes,
+        path: paths.slice(1, paths.length),
+      });
+    });
+  }
+  return result;
+}
 function parseFrontmatter(fileContent: string) {
   const frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
   const match = frontmatterRegex.exec(fileContent);
