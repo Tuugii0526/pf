@@ -1,13 +1,12 @@
 "use strict";
 
 import { createReadStream } from "node:fs";
-import { basename, extname, join } from "node:path";
+import { join } from "node:path";
 import readline from "node:readline";
 
 import graymatter from "gray-matter";
 import { getMarkdownFiles } from "../../next.helper.mjs";
 const blogPath = join(process.cwd(), "src/pages");
-
 /**
  * This method parses the source (raw) Markdown content into Frontmatter
  * and returns basic information for blog posts
@@ -33,7 +32,12 @@ const getFrontMatter = (filename, source) => {
   const categories = [category, `year-${publishYear}`, "all"];
 
   // this is the url used for the blog post it based on the category and filename
-  const slug = `/${basename(filename, extname(filename))}`;
+  let regexPattern = new RegExp(language);
+  const slug = filename
+    .replace(regexPattern, "")
+    .split(".")
+    .slice(0, 1)
+    .join("");
 
   return {
     title,
@@ -61,14 +65,13 @@ const generateBlogData = async () => {
    */
 
   const blogCategories = new Set(["all"]);
+  const languageCategorizedPosts = {};
 
-  const posts = await Promise.all(
+  await Promise.all(
     filenames.map(
-      (filename) =>
+      (filename, i) =>
         new Promise((resolve) => {
           // We create a stream for reading a file instead of reading the files
-          console.log("blogPath:", blogPath);
-
           const _stream = createReadStream(join(blogPath, filename));
 
           // We create a readline interface to read the file line-by-line
@@ -98,19 +101,23 @@ const generateBlogData = async () => {
           // and optimise the read-process as we have thousands of markdown files
           _readLine.on("close", () => {
             const frontMatterData = getFrontMatter(filename, rawFrontmatter);
-
+            frontMatterData["id"] = i;
             frontMatterData.categories.forEach((category) => {
               // we add the category to the categories set
               blogCategories.add(category);
             });
-
+            if (!languageCategorizedPosts[frontMatterData.language]) {
+              languageCategorizedPosts[frontMatterData.language] = [];
+            }
+            const categorizedPosts =
+              languageCategorizedPosts[frontMatterData.language];
+            categorizedPosts.push(frontMatterData);
             resolve(frontMatterData);
           });
         })
     )
   );
-
-  return { categories: [...blogCategories], posts };
+  return { categories: [...blogCategories], posts: languageCategorizedPosts };
 };
 
 export default generateBlogData;

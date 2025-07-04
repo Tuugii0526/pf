@@ -1,53 +1,72 @@
 {
-  "categories": ["all", "programming", "year-2025", "greeting"],
-  "posts": [
-    {
-      "title": "try try",
-      "author": "Tuguldur",
-      "date": "2025-06-03T08:52:46.598Z",
-      "categories": ["programming", "year-2025", "all"],
-      "slug": "/try2",
-      "language": "en"
-    },
-    {
-      "title": "If start is good , the end is good",
-      "author": "Tuguldur",
-      "date": "2025-06-02T21:20:59.941Z",
-      "categories": ["programming", "year-2025", "all"],
-      "slug": "/try",
-      "language": "en"
-    },
-    {
-      "title": "Greet hello",
-      "author": "Tuguldur",
-      "date": "2025-06-03T09:43:25.419Z",
-      "categories": ["greeting", "year-2025", "all"],
-      "slug": "/hello",
-      "language": "en"
-    },
-    {
-      "title": "Хичээ хичээ",
-      "author": "Төгөлдөр",
-      "date": "2025-06-03T08:52:46.598Z",
-      "categories": ["programming", "year-2025", "all"],
-      "slug": "/try2",
-      "language": "mn"
-    },
-    {
-      "title": "Гараа сайн бол бараа сайн",
-      "author": "Төгөлдөр",
-      "date": "2025-06-02T21:20:59.941Z",
-      "categories": ["programming", "year-2025", "all"],
-      "slug": "/try",
-      "language": "mn"
-    },
-    {
-      "title": "Сайнуу хэмээн мэндлээрэй",
-      "author": "Төгөлдөр",
-      "date": "2025-06-03T09:43:25.419Z",
-      "categories": ["greeting", "year-2025", "all"],
-      "slug": "/hello",
-      "language": "mn"
-    }
-  ]
+  "categories": ["all", "programming", "year-2025", "ted-talk", "greeting"],
+  "posts": {
+    "mn": [
+      {
+        "title": "Хичээ хичээ",
+        "author": "Төгөлдөр",
+        "date": "2025-06-03T08:52:46.598Z",
+        "categories": ["programming", "year-2025", "all"],
+        "slug": "/blog/programming/try2",
+        "language": "mn",
+        "id": 0
+      },
+      {
+        "title": "Гараа сайн бол бараа сайн",
+        "author": "Төгөлдөр",
+        "date": "2025-06-02T21:20:59.941Z",
+        "categories": ["programming", "year-2025", "all"],
+        "slug": "/blog/programming/try",
+        "language": "mn",
+        "id": 1
+      },
+      {
+        "title": "Сайнуу хэмээн мэндлээрэй",
+        "author": "Төгөлдөр",
+        "date": "2025-06-03T09:43:25.419Z",
+        "categories": ["greeting", "year-2025", "all"],
+        "slug": "/blog/programming/hello",
+        "language": "mn",
+        "id": 2
+      }
+    ],
+    "en": [
+      {
+        "title": "Where in the world trump is taking us ? --summary",
+        "author": "Tuguldur",
+        "date": "2025-07-03T11:44:02.322Z",
+        "categories": ["ted-talk", "year-2025", "all"],
+        "slug": "/blog/ted-talk/where-in-the-world-trump-is-taking-us-1751543161159",
+        "language": "en",
+        "id": 3
+      },
+      {
+        "title": "try try",
+        "author": "Tuguldur",
+        "date": "2025-06-03T08:52:46.598Z",
+        "categories": ["programming", "year-2025", "all"],
+        "slug": "/blog/programming/try2",
+        "language": "en",
+        "id": 4
+      },
+      {
+        "title": "If start is good , the end is good",
+        "author": "Tuguldur",
+        "date": "2025-06-02T21:20:59.941Z",
+        "categories": ["programming", "year-2025", "all"],
+        "slug": "/blog/programming/try",
+        "language": "en",
+        "id": 5
+      },
+      {
+        "title": "Greet hello",
+        "author": "Tuguldur",
+        "date": "2025-06-03T09:43:25.419Z",
+        "categories": ["greeting", "year-2025", "all"],
+        "slug": "/blog/programming/hello",
+        "language": "en",
+        "id": 6
+      }
+    ]
+  }
 }
