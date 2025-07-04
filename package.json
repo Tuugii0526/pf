@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build && node ./src/scripts/blog-data/generate-data.mjs",
+    "build": "node ./src/scripts/blog-data/generate-data.mjs && next build",
     "start": "next start",
     "lint": "next lint",
     "build-blog-data": "node ./src/scripts/blog-data/generate-data.mjs"
