@@ -5,15 +5,24 @@
   --background: #f2f0ea;
   --foreground: #0f0b01;
   --header-foreground: #ff78ac;
+  --blog-card-background: white;
+  --blog-title-foreground: #3c4858;
+  --blog-author-foreground: #000000de;
 }
 
 .dark {
   --background: #0a1828;
   --foreground: #bfa181;
   --header-foreground: #178582;
+  --blog-card-background: rgba(255, 255, 255, 0.838);
+  --blog-title-foreground: black;
+  --blog-author-foreground: rgba(0, 0, 0, 0.618);
 }
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-header-foreground: var(--header-foreground);
+  --color-blog-title-foreground: var(--blog-title-foreground);
+  --color-blog-author-foreground: var(--blog-author-foreground);
+  --color-blog-card-background: var(--blog-card-background);
 }

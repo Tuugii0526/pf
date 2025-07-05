@@ -3,7 +3,7 @@ import { getDictionary } from "@/lib/dictionaries/dictionaries";
 import { PropsWithChildren } from "react";
 import { languageCodes } from "../../lib/types/i18n";
 import { Header } from "@/components/shared/Header";
-import { Footer } from "@/components/shared/Footer";
+// import { Footer } from "@/components/shared/Footer";
 import { ThemeProvider } from "@/components/context/ThemeProvider";
 import "../globals.css";
 export const metadata = {
@@ -33,7 +33,7 @@ export default async function RootLayout({
               <div className="relative w-full h-full flex flex-col gap-5">
                 <Header />
                 {children}
-                <Footer />
+                {/* <Footer /> */}
               </div>
             </div>
           </LanguageProvider>

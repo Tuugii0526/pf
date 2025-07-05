@@ -39,7 +39,9 @@ export default async function Page({
   });
   return (
     <div className="h-full  flex flex-col justify-between mb-16">
-      <MDXRemote source={post.content} components={{}} />
+      <div>
+        <MDXRemote source={post.content} components={{}} />
+      </div>
       <div className="flex flex-col">
         <div>Similar blogs</div>
         {sameBlogs.map((blog) => (
