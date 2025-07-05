@@ -4,6 +4,7 @@ import fs from "fs";
 import path from "path";
 import { languageCodes } from "./types/i18n";
 import { blogData } from "@/next.json.mjs";
+import { PAGE_METADATA } from "../next.dynamics.mjs";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -39,6 +40,7 @@ export function getLangPathParams() {
   }
   return result;
 }
+
 function parseFrontmatter(fileContent: string) {
   const frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
   const match = frontmatterRegex.exec(fileContent);
@@ -106,7 +108,15 @@ export function getBlog({
   }
   return result;
 }
-
+export function getMetadata(props: { lang: languageCodes; fileName: string }) {
+  const metadata = { ...PAGE_METADATA };
+  const post = getBlog(props);
+  if (!post.metadata) {
+    return metadata;
+  }
+  metadata.title = post.metadata.title;
+  return metadata;
+}
 export function formatDate(date: string, includeRelative = false) {
   const currentDate = new Date();
   if (!date.includes("T")) {
