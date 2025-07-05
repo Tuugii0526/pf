@@ -1,7 +1,7 @@
 {
   "title": "chaipai",
   "description": "Бодлын урсгал",
-  "favicon": "../../app/favicon.ico",
+  "favicon": null,
   "accentColor": "#333",
   "twitter": {
     "username": "@chaipai",

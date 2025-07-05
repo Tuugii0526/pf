@@ -7,7 +7,7 @@ import { Footer } from "@/components/shared/Footer";
 import { ThemeProvider } from "@/components/context/ThemeProvider";
 import "../globals.css";
 export const metadata = {
-  title: "Tuguldur Namjildorj",
+  title: "try like an ant",
   description: "Grow together ",
 };
 
