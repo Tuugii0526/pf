@@ -1,4 +1,6 @@
 import { Blog } from "@/components/blog/Blog";
+import { Categories } from "@/components/blog/Categories";
+import { dm_serif_display, roboto } from "@/lib/fonts/fonts";
 import { getSimilarBlogs } from "@/lib/get-similar-blogs";
 import { languageCodes } from "@/lib/types/i18n";
 import { getBlog, getLangPathParams, getMetadata } from "@/lib/utils";
@@ -30,7 +32,7 @@ export default async function Page({
   });
 
   if (!post.content) {
-    return <div>Empty</div>;
+    return <div className="font-bold">Блог олдсонгүй ;|</div>;
   }
   const sameBlogs = getSimilarBlogs({
     lang: locale,
@@ -38,12 +40,42 @@ export default async function Page({
     slug: "/" + path.join("/"),
   });
   return (
-    <div className="h-full  flex flex-col justify-between mb-16">
-      <div>
-        <MDXRemote source={post.content} components={{}} />
+    <div className="h-full w-full  flex flex-col justify-between mb-16">
+      <div className="w-[90%] mx-auto text-blog-one-text-foreground ">
+        <div className="w-full flex flex-col justify-center mb-[15px]">
+          <p className={`text-[45px] ${dm_serif_display.className}`}>
+            {post.metadata.title}
+          </p>
+          <Categories categories={[post.metadata.category]} />
+        </div>
+        <MDXRemote
+          source={post.content}
+          components={{
+            p: (props) => (
+              <p className={`31.5px] font-medium ${roboto}`} {...props} />
+            ),
+            h1: (props) => (
+              <p className={`text-[32px] font-bold ${roboto}`} {...props} />
+            ),
+            h2: (props) => (
+              <p className={`text-[24x] font-bold ${roboto}`} {...props} />
+            ),
+            h3: (props) => (
+              <p className={`text-[18px] font-bold ${roboto}`} {...props} />
+            ),
+            h4: (props) => (
+              <p className={`text-[16px] font-bold ${roboto}`} {...props} />
+            ),
+            h5: (props) => (
+              <p className={`text-[13px] font-bold ${roboto}`} {...props} />
+            ),
+            h6: (props) => (
+              <p className={`text-[12px] font-bold ${roboto}`} {...props} />
+            ),
+          }}
+        />
       </div>
       <div className="flex flex-col">
-        <div>Similar blogs</div>
         {sameBlogs.map((blog) => (
           <Blog
             key={`${blog.language}-${blog.title}`}

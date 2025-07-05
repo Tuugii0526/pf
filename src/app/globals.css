@@ -8,6 +8,9 @@
   --blog-card-background: white;
   --blog-title-foreground: #3c4858;
   --blog-author-foreground: #000000de;
+  --blog-start-text: #999999;
+  --blog-category-foreground: #325c80;
+  --blog-one-text-foreground: #000000e6;
 }
 
 .dark {
@@ -17,6 +20,9 @@
   --blog-card-background: rgba(255, 255, 255, 0.838);
   --blog-title-foreground: black;
   --blog-author-foreground: rgba(0, 0, 0, 0.618);
+  --blog-start-text: #130f0f8e;
+  --blog-category-foreground: #0f2c45;
+  --blog-one-text-foreground: rgba(255, 255, 255, 0.816);
 }
 @theme inline {
   --color-background: var(--background);
@@ -25,4 +31,7 @@
   --color-blog-title-foreground: var(--blog-title-foreground);
   --color-blog-author-foreground: var(--blog-author-foreground);
   --color-blog-card-background: var(--blog-card-background);
+  --color-blog-category-foreground: var(--blog-category-foreground);
+  --color-blog-start-text: var(--blog-start-text);
+  --color-blog-one-text-foreground: var(--blog-one-text-foreground);
 }

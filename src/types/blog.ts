@@ -9,6 +9,7 @@ export interface BlogPost {
   slug: string;
   language: languageCodes;
   id: number;
+  startText: string;
 }
 
 export interface BlogData {

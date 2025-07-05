@@ -78,8 +78,9 @@ const generateBlogData = async () => {
           const _readLine = readline.createInterface({ input: _stream });
 
           let rawFrontmatter = "";
+          let startText = "";
           let frontmatterSeparatorsEncountered = 0;
-
+          let emptyStringEncountered = 0;
           // We read line by line
           _readLine.on("line", (line) => {
             rawFrontmatter += `${line}\n`;
@@ -91,6 +92,13 @@ const generateBlogData = async () => {
 
             // Once we have two separators we close the readLine and the stream
             if (frontmatterSeparatorsEncountered === 2) {
+              if (line == "") {
+                emptyStringEncountered++;
+              } else if (line !== "---") {
+                startText += line;
+              }
+            }
+            if (emptyStringEncountered == 2) {
               _readLine.close();
               _stream.close();
             }
@@ -102,6 +110,7 @@ const generateBlogData = async () => {
           _readLine.on("close", () => {
             const frontMatterData = getFrontMatter(filename, rawFrontmatter);
             frontMatterData["id"] = i;
+            frontMatterData["startText"] = startText;
             frontMatterData.categories.forEach((category) => {
               // we add the category to the categories set
               blogCategories.add(category);
