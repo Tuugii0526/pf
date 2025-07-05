@@ -5,7 +5,7 @@ export interface BlogPost {
   author: string;
   username: string;
   date: Date;
-  categories: unknown;
+  categories: string[];
   slug: string;
   language: languageCodes;
   id: number;

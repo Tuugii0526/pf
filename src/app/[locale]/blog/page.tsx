@@ -14,17 +14,13 @@ export default async function Page({
     <div className="flex flex-col gap-2 ">
       <p>Blogs</p>
       <div className="flex gap-2">
-        {blogData.posts[locale].map((blog) => {
-          if (blog?.language == locale) {
-            return (
-              <Blog
-                key={`${blog.language}-${blog.title}`}
-                blog={blog}
-                locale={locale}
-              />
-            );
-          }
-        })}
+        {blogData.posts[locale].map((blog) => (
+          <Blog
+            key={`${blog.language}-${blog.title}`}
+            blog={blog}
+            locale={locale}
+          />
+        ))}
       </div>
     </div>
   );
