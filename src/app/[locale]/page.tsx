@@ -7,5 +7,5 @@ export const generateStaticParams = async () => {
   return routes;
 };
 export default async function Home() {
-  return <div>Hi this is main</div>;
+  return <div className="font-bold">...Coming soon...</div>;
 }
