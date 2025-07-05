@@ -1,0 +1,12 @@
+{
+  "title": "chaipai",
+  "description": "Бодлын урсгал",
+  "favicon": "",
+  "accentColor": "#333",
+  "twitter": {
+    "username": "@chaipai",
+    "card": "summary",
+    "img": "/src/public/image.png",
+    "imgAlt": "Lego hero"
+  }
+}
