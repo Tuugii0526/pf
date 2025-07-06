@@ -5,5 +5,10 @@
       "works": "Works",
       "blogs": "Blogs"
     }
-  }
+  },
+  "home": {
+    "greeting": "👨‍💻 Hello !",
+    "introduction": "Thought flow ~~~, experience ,programming and heard-things will be shared to you guys. Welcome "
+  },
+  "coming_soon": "coming soon.."
 }

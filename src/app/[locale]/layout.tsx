@@ -21,7 +21,7 @@ export default async function RootLayout({
   const dict = await getDictionary(locale);
   return (
     <html suppressHydrationWarning lang={locale}>
-      <body className=" h-screen *:text-foreground ">
+      <body className=" min-h-screen h-auto *:text-foreground ">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -29,12 +29,9 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <LanguageProvider dictionary={dict} currentLanguage={locale}>
-            <div className="m-auto w-full h-full min-w-[240px] max-w-[760px] bg-background p-[10px]">
-              <div className="relative w-full h-full flex flex-col gap-5">
-                <Header />
-                {children}
-                {/* <Footer /> */}
-              </div>
+            <div className="m-auto p-10 w-full min-h-screen h-full min-w-[240px] max-w-[760px] bg-background  ">
+              <Header />
+              {children}
             </div>
           </LanguageProvider>
         </ThemeProvider>
