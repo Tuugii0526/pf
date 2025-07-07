@@ -3,14 +3,21 @@ import { Blog } from "../blog/Blog";
 import { getBlogsByCategory } from "@/lib/utils";
 import { CATEGORIES } from "@/lib/constant";
 
-export const TedtalkLayout = ({ lang }: { lang: languageCodes }) => {
-  const blogs = getBlogsByCategory({
+export const TedtalkLayout = ({
+  lang,
+  page,
+}: {
+  lang: languageCodes;
+  page: number;
+}) => {
+  const data = getBlogsByCategory({
     lang: lang,
     category: CATEGORIES["ted-talk"],
+    page,
   });
   return (
     <div className="flex flex-col">
-      {blogs.map((blog) => (
+      {data.posts.map((blog) => (
         <Blog
           key={`${blog.language}-${blog.title}`}
           blog={blog}

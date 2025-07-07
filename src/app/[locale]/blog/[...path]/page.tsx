@@ -31,10 +31,30 @@ export default async function Page({
   const { path, locale } = await params;
   if (path.length == 1) {
     if (Object.values(CATEGORIES).includes(path[0] as CategoriesT)) {
-      return <CategoryLayout category={path[0] as CategoriesT} lang={locale} />;
+      return (
+        <CategoryLayout
+          category={path[0] as CategoriesT}
+          lang={locale}
+          page={1}
+        />
+      );
     } else {
       return <div className="font-bold">Блог олдсонгүй ;|</div>;
     }
+  }
+  if (
+    path.length == 3 &&
+    Object.values(CATEGORIES).includes(path[0] as CategoriesT) &&
+    path[1] == "page" &&
+    typeof Number(path[2]) == "number"
+  ) {
+    return (
+      <CategoryLayout
+        category={path[0] as CategoriesT}
+        lang={locale}
+        page={Number(path[2])}
+      />
+    );
   }
   const post = getBlog({
     lang: locale,

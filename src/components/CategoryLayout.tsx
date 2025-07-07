@@ -1,22 +1,46 @@
 import { CategoriesT } from "@/lib/types/categories";
-import { ProgrammingLayout } from "./layout/ProgrammingLayout";
-import { TedtalkLayout } from "./layout/TedtalkLayout";
 import { languageCodes } from "@/lib/types/i18n";
-
-type LayoutProps = { lang: languageCodes };
-
-const layouts: { [key in CategoriesT]: React.ComponentType<LayoutProps> } = {
-  programming: ProgrammingLayout,
-  "ted-talk": TedtalkLayout,
-};
-
+import { getBlogsByCategory } from "@/lib/utils";
+import { CATEGORIES, CATEGORIES_INFO } from "@/lib/constant";
+import { Blog } from "./blog/Blog";
+import { Pagination } from "./Pagination";
+import { dm_serif_display } from "@/lib/fonts/fonts";
 export const CategoryLayout = ({
   category,
   lang,
+  page,
 }: {
   category: CategoriesT;
   lang: languageCodes;
+  page: number;
 }) => {
-  const LayoutComponent = layouts[category];
-  return <LayoutComponent lang={lang} />;
+  const data = getBlogsByCategory({
+    lang: lang,
+    category: CATEGORIES[category],
+    page,
+  });
+
+  return (
+    <div className="flex flex-col">
+      <div className="flex flex-col">
+        <p className={`text-[45px] ${dm_serif_display.className}`}>
+          {category}
+        </p>
+        <p>{CATEGORIES_INFO[category].emoji} </p>
+        <p>{CATEGORIES_INFO[category].description} </p>
+      </div>
+      {data.posts.map((blog) => (
+        <Blog
+          key={`${blog.language}-${blog.title}`}
+          blog={blog}
+          locale={lang}
+        />
+      ))}
+      <Pagination
+        pagination={data?.pagination}
+        lang={lang}
+        category={category}
+      />
+    </div>
+  );
 };
