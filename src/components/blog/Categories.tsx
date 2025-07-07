@@ -13,7 +13,7 @@ export const Categories = ({ categories }: { categories: string[] }) => {
         return (
           <Link
             key={c}
-            className="text-blog-category-foreground px-[9px] rounded-2xl m-0.5 text-[12px]"
+            className="text-blog-category-foreground px-[9px] rounded-2xl m-0.5 text-[18px]"
             style={{
               backgroundColor: color,
             }}

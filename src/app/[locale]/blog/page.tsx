@@ -30,6 +30,7 @@ export default async function Page({
           pagination={data?.pagination}
           lang={locale}
           category={"all"}
+          currentPage={1}
         />
       </div>
     </div>

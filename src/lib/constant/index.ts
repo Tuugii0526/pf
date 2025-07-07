@@ -1,4 +1,5 @@
 import { CategoriesT } from "../types/categories";
+import { languageCodes } from "../types/i18n";
 
 export const getNavs = (langCode: string) => [
   {
@@ -17,7 +18,7 @@ export const getNavs = (langCode: string) => [
     label: "💻",
   },
 ];
-export const Languages = ["en", "mn"];
+export const Languages: languageCodes[] = ["en", "mn"];
 export const COLORS = [
   "#COE6FF",
   "#FFD6F8",

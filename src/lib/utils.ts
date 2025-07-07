@@ -7,7 +7,7 @@ import { blogData } from "@/next.json.mjs";
 import { PAGE_METADATA } from "../next.dynamics.mjs";
 import { CategoriesT } from "./types/categories";
 import { cache } from "react";
-import { PER_PAGE_BLOGS } from "./constant";
+import { CATEGORIES, Languages, PER_PAGE_BLOGS } from "./constant";
 
 function parseFrontmatter(fileContent: string) {
   const frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
@@ -47,8 +47,50 @@ for (const [key, value] of Object.entries(blogData.posts)) {
     pathMap.set(`${key}${blog.slug}`, null);
   });
 }
-export function getLangPathParams() {
+const getOneCategoryBlogs = cache(
+  ({ category, lang }: { category: CategoriesT; lang: languageCodes }) => {
+    return blogData.posts[lang]
+      .filter((post) => post.categories.includes(category))
+      .sort((p1, p2) => {
+        return new Date(p1.date).getTime() - new Date(p2.date).getTime();
+      });
+  }
+);
+const getCategoryWithItsPossiblePage = () => {
+  const categories = Object.values(CATEGORIES);
   const result: { locale: languageCodes; path: string[] }[] = [];
+  categories.forEach((c) => {
+    Languages.forEach((lang) => {
+      const cBlogs = getOneCategoryBlogs({
+        category: c,
+        lang,
+      });
+      const totalBlogsLength = cBlogs.length;
+      let totalPages;
+      if (totalBlogsLength == 0) {
+        totalPages = 0;
+      } else {
+        totalPages = totalBlogsLength / PER_PAGE_BLOGS;
+        totalPages = totalPages % 1 == 1 ? totalPages : Math.ceil(totalPages);
+      }
+      result.push({
+        locale: lang,
+        path: [c],
+      });
+      for (let i = 1; i <= totalPages; i++) {
+        result.push({
+          locale: lang,
+          path: [c, "page", String(i)],
+        });
+      }
+    });
+  });
+  return result;
+};
+export function getLangPathParams() {
+  const result: { locale: languageCodes; path: string[] }[] =
+    getCategoryWithItsPossiblePage();
+
   for (const [key, value] of Object.entries(blogData.posts)) {
     value.forEach((blog) => {
       const paths = blog.slug.split("/");
@@ -63,15 +105,7 @@ export function getLangPathParams() {
 export function getCategories() {
   return blogData.categories as string[];
 }
-const getOneCategoryBlogs = cache(
-  ({ category, lang }: { category: CategoriesT; lang: languageCodes }) => {
-    return blogData.posts[lang]
-      .filter((post) => post.categories.includes(category))
-      .sort((p1, p2) => {
-        return new Date(p1.date).getTime() - new Date(p2.date).getTime();
-      });
-  }
-);
+
 export function getBlogsByCategory({
   category,
   lang,

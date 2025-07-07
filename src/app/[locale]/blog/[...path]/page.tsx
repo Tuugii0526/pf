@@ -69,7 +69,7 @@ export default async function Page({
     slug: "/" + path.join("/"),
   });
   return (
-    <div className="h-full w-full  flex flex-col justify-between mb-16">
+    <div className=" h-full w-full  flex flex-col justify-between  ">
       <div className="w-[90%] mx-auto text-blog-one-text-foreground ">
         <div className="w-full flex flex-col justify-center mb-[15px]">
           <p className={`text-[45px] ${dm_serif_display.className}`}>
@@ -105,6 +105,9 @@ export default async function Page({
         />
       </div>
       <div className="flex flex-col">
+        <p className={`text-center text-2xl font-bold ${roboto}`}>
+          Төстэй блогууд
+        </p>
         {sameBlogs.map((blog) => (
           <Blog
             key={`${blog.language}-${blog.title}`}
