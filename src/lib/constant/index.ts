@@ -1,4 +1,4 @@
-import { CategoriesMap, CategoriesT } from "../types/categories";
+import { CategoriesT } from "../types/categories";
 
 export const getNavs = (langCode: string) => [
   {
@@ -26,7 +26,29 @@ export const COLORS = [
   "#FFD4A0",
   "#A7FAE6",
 ];
-export const CATEGORIES: { [key in CategoriesT]: CategoriesMap[key] } = {
+export const CATEGORIES: { [key in CategoriesT]: CategoriesT } = {
   programming: "programming",
   "ted-talk": "ted-talk",
+  all: "all",
+};
+
+export const PER_PAGE_BLOGS = 3;
+export const CATEGORIES_INFO: {
+  [key in CategoriesT]: {
+    emoji: string;
+    description: string;
+  };
+} = {
+  programming: {
+    emoji: "🛜 👾",
+    description: "Программын мэдлэгээ дээшлүүлцгээе.",
+  },
+  "ted-talk": {
+    emoji: "🗣️",
+    description: "Бид мундаг хүмүүсээс юу сонссон вэ ?",
+  },
+  all: {
+    emoji: "~~~;)~~~~",
+    description: "all",
+  },
 };

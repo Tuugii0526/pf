@@ -6,6 +6,8 @@ import { languageCodes } from "./types/i18n";
 import { blogData } from "@/next.json.mjs";
 import { PAGE_METADATA } from "../next.dynamics.mjs";
 import { CategoriesT } from "./types/categories";
+import { cache } from "react";
+import { PER_PAGE_BLOGS } from "./constant";
 
 function parseFrontmatter(fileContent: string) {
   const frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
@@ -61,16 +63,49 @@ export function getLangPathParams() {
 export function getCategories() {
   return blogData.categories as string[];
 }
+const getOneCategoryBlogs = cache(
+  ({ category, lang }: { category: CategoriesT; lang: languageCodes }) => {
+    return blogData.posts[lang]
+      .filter((post) => post.categories.includes(category))
+      .sort((p1, p2) => {
+        return new Date(p1.date).getTime() - new Date(p2.date).getTime();
+      });
+  }
+);
 export function getBlogsByCategory({
   category,
   lang,
+  page,
 }: {
   category: CategoriesT;
   lang: languageCodes;
+  page: number;
 }) {
-  return blogData.posts[lang].filter((post) =>
-    post.categories.includes(category)
-  );
+  const categoryblogs = getOneCategoryBlogs({
+    category,
+    lang,
+  });
+  const totalBlogsLength = categoryblogs.length;
+  let totalPages;
+  if (totalBlogsLength == 0) {
+    totalPages = 0;
+  } else {
+    totalPages = totalBlogsLength / PER_PAGE_BLOGS;
+    totalPages = totalPages % 1 == 1 ? totalPages : Math.ceil(totalPages);
+  }
+
+  return {
+    posts: categoryblogs.slice(
+      PER_PAGE_BLOGS * (page - 1),
+      PER_PAGE_BLOGS * page
+    ),
+    pagination: {
+      prev: page > 1 ? page - 1 : null,
+      next: page < totalPages ? page + 1 : null,
+      totalPages,
+      totalLength: totalBlogsLength,
+    },
+  };
 }
 function readMDXFile(filePath: fs.PathOrFileDescriptor) {
   try {

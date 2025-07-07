@@ -1,6 +1,7 @@
 import { languageCodes } from "@/lib/types/i18n";
-import { blogData } from "../../../next.json.mjs";
 import { Blog } from "@/components/blog/Blog";
+import { getBlogsByCategory } from "@/lib/utils";
+import { Pagination } from "@/components/Pagination";
 
 export default async function Page({
   params,
@@ -10,16 +11,26 @@ export default async function Page({
   }>;
 }) {
   const { locale } = await params;
+  const data = getBlogsByCategory({
+    lang: locale,
+    category: "all",
+    page: 1,
+  });
   return (
     <div className="flex flex-col gap-2 ">
       <div className="flex flex-col gap-4">
-        {blogData.posts[locale].map((blog) => (
+        {data.posts.map((blog) => (
           <Blog
             key={`${blog.language}-${blog.title}`}
             blog={blog}
             locale={locale}
           />
         ))}
+        <Pagination
+          pagination={data?.pagination}
+          lang={locale}
+          category={"all"}
+        />
       </div>
     </div>
   );
