@@ -40,7 +40,9 @@ export function getLangPathParams() {
   }
   return result;
 }
-
+export function getCategories() {
+  return blogData.categories as string[];
+}
 function parseFrontmatter(fileContent: string) {
   const frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
   const match = frontmatterRegex.exec(fileContent);
