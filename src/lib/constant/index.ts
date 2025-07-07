@@ -1,3 +1,5 @@
+import { CategoriesMap, CategoriesT } from "../types/categories";
+
 export const getNavs = (langCode: string) => [
   {
     id: 1,
@@ -24,3 +26,7 @@ export const COLORS = [
   "#FFD4A0",
   "#A7FAE6",
 ];
+export const CATEGORIES: { [key in CategoriesT]: CategoriesMap[key] } = {
+  programming: "programming",
+  "ted-talk": "ted-talk",
+};
