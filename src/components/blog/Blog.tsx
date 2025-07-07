@@ -1,5 +1,5 @@
 import { languageCodes } from "@/lib/types/i18n";
-import { BlogPost } from "@/types/blog";
+import { BlogPost } from "@/lib/types/blog";
 import Link from "next/link";
 import { Categories } from "./Categories";
 
