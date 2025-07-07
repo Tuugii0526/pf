@@ -1,16 +1,12 @@
 import { Blog } from "@/components/blog/Blog";
 import { Categories } from "@/components/blog/Categories";
 import { CategoryLayout } from "@/components/CategoryLayout";
+import { CATEGORIES } from "@/lib/constant";
 import { dm_serif_display, roboto } from "@/lib/fonts/fonts";
 import { getSimilarBlogs } from "@/lib/get-similar-blogs";
 import { CategoriesT } from "@/lib/types/categories";
 import { languageCodes } from "@/lib/types/i18n";
-import {
-  getBlog,
-  getCategories,
-  getLangPathParams,
-  getMetadata,
-} from "@/lib/utils";
+import { getBlog, getLangPathParams, getMetadata } from "@/lib/utils";
 import { MDXRemote } from "next-mdx-remote/rsc";
 export const generateStaticParams = async () => {
   return getLangPathParams();
@@ -34,8 +30,8 @@ export default async function Page({
 }) {
   const { path, locale } = await params;
   if (path.length == 1) {
-    if (getCategories().includes(path[0])) {
-      return <CategoryLayout category={path[0] as CategoriesT} />;
+    if (Object.values(CATEGORIES).includes(path[0] as CategoriesT)) {
+      return <CategoryLayout category={path[0] as CategoriesT} lang={locale} />;
     } else {
       return <div className="font-bold">Блог олдсонгүй ;|</div>;
     }

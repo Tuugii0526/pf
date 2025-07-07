@@ -1,12 +1,22 @@
 import { CategoriesT } from "@/lib/types/categories";
 import { ProgrammingLayout } from "./layout/ProgrammingLayout";
 import { TedtalkLayout } from "./layout/TedtalkLayout";
+import { languageCodes } from "@/lib/types/i18n";
 
-const layouts: { [key in CategoriesT]: () => React.ReactElement } = {
+type LayoutProps = { lang: languageCodes };
+
+const layouts: { [key in CategoriesT]: React.ComponentType<LayoutProps> } = {
   programming: ProgrammingLayout,
   "ted-talk": TedtalkLayout,
 };
-export const CategoryLayout = ({ category }: { category: CategoriesT }) => {
+
+export const CategoryLayout = ({
+  category,
+  lang,
+}: {
+  category: CategoriesT;
+  lang: languageCodes;
+}) => {
   const LayoutComponent = layouts[category];
-  return <LayoutComponent />;
+  return <LayoutComponent lang={lang} />;
 };

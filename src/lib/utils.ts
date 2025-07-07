@@ -5,6 +5,24 @@ import path from "path";
 import { languageCodes } from "./types/i18n";
 import { blogData } from "@/next.json.mjs";
 import { PAGE_METADATA } from "../next.dynamics.mjs";
+import { CategoriesT } from "./types/categories";
+
+function parseFrontmatter(fileContent: string) {
+  const frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
+  const match = frontmatterRegex.exec(fileContent);
+  const frontMatterBlock = match![1];
+  const content = fileContent.replace(frontmatterRegex, "").trim();
+  const frontMatterLines = frontMatterBlock.trim().split("\n");
+  const metadata: Partial<Metadata> = {};
+
+  frontMatterLines.forEach((line) => {
+    const [key, ...valueArr] = line.split(": ");
+    let value = valueArr.join(": ").trim();
+    value = value.replace(/^['"](.*)['"]$/, "$1");
+    metadata[key.trim() as keyof Metadata] = value;
+  });
+  return { metadata: metadata as Metadata, content };
+}
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -43,23 +61,17 @@ export function getLangPathParams() {
 export function getCategories() {
   return blogData.categories as string[];
 }
-function parseFrontmatter(fileContent: string) {
-  const frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
-  const match = frontmatterRegex.exec(fileContent);
-  const frontMatterBlock = match![1];
-  const content = fileContent.replace(frontmatterRegex, "").trim();
-  const frontMatterLines = frontMatterBlock.trim().split("\n");
-  const metadata: Partial<Metadata> = {};
-
-  frontMatterLines.forEach((line) => {
-    const [key, ...valueArr] = line.split(": ");
-    let value = valueArr.join(": ").trim();
-    value = value.replace(/^['"](.*)['"]$/, "$1");
-    metadata[key.trim() as keyof Metadata] = value;
-  });
-  return { metadata: metadata as Metadata, content };
+export function getBlogsByCategory({
+  category,
+  lang,
+}: {
+  category: CategoriesT;
+  lang: languageCodes;
+}) {
+  return blogData.posts[lang].filter((post) =>
+    post.categories.includes(category)
+  );
 }
-
 function readMDXFile(filePath: fs.PathOrFileDescriptor) {
   try {
     const rawContent = fs.readFileSync(filePath, "utf-8");
