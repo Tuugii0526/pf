@@ -21,8 +21,8 @@ export const CategoryLayout = ({
   });
 
   return (
-    <div className="flex flex-col">
-      <div className="flex flex-col">
+    <div className="flex flex-col gap-5">
+      <div className="flex flex-col items-center">
         <p className={`text-[45px] ${dm_serif_display.className}`}>
           {category}
         </p>
@@ -40,6 +40,7 @@ export const CategoryLayout = ({
         pagination={data?.pagination}
         lang={lang}
         category={category}
+        currentPage={page}
       />
     </div>
   );
