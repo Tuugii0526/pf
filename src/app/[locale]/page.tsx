@@ -9,3 +9,5 @@ export const generateStaticParams = async () => {
 export default async function Home() {
   return <Greeting />;
 }
+// export const dynamic = "force-static";
+// export const revalidate = 300;

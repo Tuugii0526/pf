@@ -2,7 +2,8 @@ import { languageCodes } from "@/lib/types/i18n";
 import { Blog } from "@/components/blog/Blog";
 import { getBlogsByCategory } from "@/lib/utils";
 import { Pagination } from "@/components/Pagination";
-
+// export const dynamic = "force-static";
+// export const revalidate = 300;
 export default async function Page({
   params,
 }: {
