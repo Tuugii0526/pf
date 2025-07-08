@@ -1,6 +1,6 @@
 import { CategoriesT } from "../types/categories";
 import { languageCodes } from "../types/i18n";
-
+export const BASE_URL = "https://try-like-an-ant.vercel.app";
 export const getNavs = (langCode: string) => [
   {
     id: 1,
