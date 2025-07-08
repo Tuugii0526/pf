@@ -56,7 +56,8 @@ const getOneCategoryBlogs = cache(
       });
   }
 );
-const getCategoryWithItsPossiblePage = () => {
+
+export const getCategoryWithItsPossiblePage = () => {
   const categories = Object.values(CATEGORIES);
   const result: { locale: languageCodes; path: string[] }[] = [];
   categories.forEach((c) => {
@@ -87,6 +88,7 @@ const getCategoryWithItsPossiblePage = () => {
   });
   return result;
 };
+
 export function getLangPathParams() {
   const result: { locale: languageCodes; path: string[] }[] =
     getCategoryWithItsPossiblePage();
