@@ -11,6 +11,8 @@ import { CATEGORIES, Languages, PER_PAGE_BLOGS } from "./constant";
 
 function parseFrontmatter(fileContent: string) {
   const frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
+  const introRegex = /^(?:---[\s\S]*?---)\s*([\s\S]+?)(?=\n\n|#)/m;
+  const introductionMatch = introRegex.exec(fileContent);
   const match = frontmatterRegex.exec(fileContent);
   const frontMatterBlock = match![1];
   const content = fileContent.replace(frontmatterRegex, "").trim();
@@ -23,6 +25,7 @@ function parseFrontmatter(fileContent: string) {
     value = value.replace(/^['"](.*)['"]$/, "$1");
     metadata[key.trim() as keyof Metadata] = value;
   });
+  metadata["startText"] = introductionMatch![1];
   return { metadata: metadata as Metadata, content };
 }
 export function cn(...inputs: ClassValue[]) {
@@ -34,6 +37,7 @@ type Metadata = {
   title: string;
   author: string;
   language: string;
+  startText: string;
 };
 const pathMap: Map<
   string,
@@ -166,6 +170,8 @@ export function getBlog({
       content: null,
     };
   }
+  console.log(pathMap);
+
   const result = pathMap.get(`${lang}/${fileName}`);
   if (!result) {
     const { metadata, content } = readMDXFile(
@@ -175,7 +181,7 @@ export function getBlog({
         "content",
         lang,
         "blog",
-        fileName + ".mdx"
+        fileName + "/index.mdx"
       )
     );
     if (content && metadata) {
@@ -199,6 +205,7 @@ export function getMetadata(props: { lang: languageCodes; fileName: string }) {
     return metadata;
   }
   metadata.title = post.metadata.title;
+  metadata.description = post.metadata.startText;
   return metadata;
 }
 export function formatDate(date: string, includeRelative = false) {

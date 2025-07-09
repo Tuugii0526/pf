@@ -36,7 +36,6 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
     });
 
   const result = [...allEnglistPaths, ...allCategoryParams];
-  console.dir(result, { depth: null });
   return result;
 };
 export default sitemap;

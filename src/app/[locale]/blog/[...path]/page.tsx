@@ -8,6 +8,7 @@ import { CategoriesT } from "@/lib/types/categories";
 import { languageCodes } from "@/lib/types/i18n";
 import { getBlog, getLangPathParams, getMetadata } from "@/lib/utils";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import Image from "next/image";
 // export const dynamic = "force-static";
 // export const revalidate = 300;
 export const generateStaticParams = async () => {
