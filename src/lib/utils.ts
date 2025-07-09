@@ -170,8 +170,6 @@ export function getBlog({
       content: null,
     };
   }
-  console.log(pathMap);
-
   const result = pathMap.get(`${lang}/${fileName}`);
   if (!result) {
     const { metadata, content } = readMDXFile(

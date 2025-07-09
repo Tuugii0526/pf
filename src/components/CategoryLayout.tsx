@@ -29,13 +29,15 @@ export const CategoryLayout = ({
         <p>{CATEGORIES_INFO[category].emoji} </p>
         <p>{CATEGORIES_INFO[category].description} </p>
       </div>
-      {data.posts.map((blog) => (
-        <Blog
-          key={`${blog.language}-${blog.title}`}
-          blog={blog}
-          locale={lang}
-        />
-      ))}
+      <div className="mb-[60px]">
+        {data.posts.map((blog) => (
+          <Blog
+            key={`${blog.language}-${blog.title}`}
+            blog={blog}
+            locale={lang}
+          />
+        ))}
+      </div>
       <Pagination
         pagination={data?.pagination}
         lang={lang}
