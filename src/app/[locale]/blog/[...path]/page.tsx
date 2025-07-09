@@ -8,8 +8,8 @@ import { CategoriesT } from "@/lib/types/categories";
 import { languageCodes } from "@/lib/types/i18n";
 import { getBlog, getLangPathParams, getMetadata } from "@/lib/utils";
 import { MDXRemote } from "next-mdx-remote/rsc";
-// export const dynamic = "force-static";
-// export const revalidate = 300;
+export const dynamic = "force-static";
+export const revalidate = 300;
 export const generateStaticParams = async () => {
   return getLangPathParams();
 };
@@ -72,7 +72,7 @@ export default async function Page({
   });
   return (
     <div className=" h-full w-full  flex flex-col justify-between  ">
-      <div className="w-[90%] mx-auto text-blog-one-text-foreground ">
+      <div className="w-[90%] mx-auto text-blog-one-text-foreground mb-[60px]">
         <div className="w-full flex flex-col justify-center mb-[15px]">
           <p className={`text-[45px] ${dm_serif_display.className}`}>
             {post.metadata.title}
@@ -106,18 +106,20 @@ export default async function Page({
           }}
         />
       </div>
-      <div className="flex flex-col">
-        <p className={`text-center text-2xl font-bold ${roboto}`}>
-          Төстэй блогууд
-        </p>
-        {sameBlogs.map((blog) => (
-          <Blog
-            key={`${blog.language}-${blog.title}`}
-            blog={blog}
-            locale={locale}
-          />
-        ))}
-      </div>
+      {sameBlogs.length && (
+        <div className="flex flex-col">
+          <p className={`text-center text-2xl font-bold ${roboto}`}>
+            Төстэй блогууд
+          </p>
+          {sameBlogs.map((blog) => (
+            <Blog
+              key={`${blog.language}-${blog.title}`}
+              blog={blog}
+              locale={locale}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

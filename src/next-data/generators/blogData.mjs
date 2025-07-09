@@ -16,11 +16,11 @@ const blogPath = join(process.cwd(), "src/content");
  */
 const getFrontMatter = (filename, source) => {
   const {
-    title = "Untitled",
+    title = "Try like an ant , little at a time",
     author = "Tuguldur",
     username,
     date = new Date(),
-    category = "uncategorized",
+    category = "",
     language,
   } = graymatter(source).data;
 
@@ -35,7 +35,7 @@ const getFrontMatter = (filename, source) => {
   let regexPattern = new RegExp(`${language}/blog`);
   const slug = filename
     .replace(regexPattern, "")
-    .split(".")
+    .split("/index.md")
     .slice(0, 1)
     .join("");
 

@@ -1,12 +1,12 @@
 {
-  "title": "chaipai",
-  "description": "Бодлын урсгал",
-  "favicon": null,
+  "title": "Try like an ant",
+  "description": "Thought flow , experience and nice things about technology are being shared ;)",
+  "favicon": "/src/app/favicon.ico",
   "accentColor": "#333",
   "twitter": {
-    "username": "@chaipai",
+    "username": "@Tuguldurchaipai",
     "card": "summary",
-    "img": "/src/public/image.png",
-    "imgAlt": "Lego hero"
+    "img": "/public/profile.jpeg",
+    "imgAlt": "Ideas are worth sharing"
   }
 }
