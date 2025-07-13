@@ -1,13 +1,13 @@
 import { Blog } from "@/components/blog/Blog";
 import { Categories } from "@/components/blog/Categories";
 import { CategoryLayout } from "@/components/CategoryLayout";
+import { CustomMdx } from "@/components/CustomMdx";
 import { CATEGORIES } from "@/lib/constant";
 import { dm_serif_display, roboto } from "@/lib/fonts/fonts";
 import { getSimilarBlogs } from "@/lib/get-similar-blogs";
 import { CategoriesT } from "@/lib/types/categories";
 import { languageCodes } from "@/lib/types/i18n";
 import { getBlog, getLangPathParams, getMetadata } from "@/lib/utils";
-import { MDXRemote } from "next-mdx-remote/rsc";
 export const dynamic = "force-static";
 export const revalidate = 300;
 export const generateStaticParams = async () => {
@@ -67,46 +67,21 @@ export default async function Page({
   }
   const sameBlogs = getSimilarBlogs({
     lang: locale,
-    category: post.metadata.category,
+    category: post?.metadata?.category,
     slug: "/" + path.join("/"),
   });
   return (
     <div className=" h-full w-full  flex flex-col justify-between  ">
       <div className="w-[90%] mx-auto text-blog-one-text-foreground mb-[60px]">
         <div className="w-full flex flex-col justify-center mb-[15px]">
-          <p className={`text-[45px] ${dm_serif_display.className}`}>
-            {post.metadata.title}
+          <p className={`text-[28px] ${dm_serif_display.className}`}>
+            {post?.metadata?.title}
           </p>
-          <Categories categories={[post.metadata.category]} />
+          <Categories categories={[post?.metadata?.category]} />
         </div>
-        <MDXRemote
-          source={post.content}
-          components={{
-            p: (props) => (
-              <p className={`31.5px] font-medium ${roboto}`} {...props} />
-            ),
-            h1: (props) => (
-              <p className={`text-[32px] font-bold ${roboto}`} {...props} />
-            ),
-            h2: (props) => (
-              <p className={`text-[24x] font-bold ${roboto}`} {...props} />
-            ),
-            h3: (props) => (
-              <p className={`text-[18px] font-bold ${roboto}`} {...props} />
-            ),
-            h4: (props) => (
-              <p className={`text-[16px] font-bold ${roboto}`} {...props} />
-            ),
-            h5: (props) => (
-              <p className={`text-[13px] font-bold ${roboto}`} {...props} />
-            ),
-            h6: (props) => (
-              <p className={`text-[12px] font-bold ${roboto}`} {...props} />
-            ),
-          }}
-        />
+        <CustomMdx source={post.content} />
       </div>
-      {sameBlogs.length && (
+      {sameBlogs.length > 0 && (
         <div className="flex flex-col">
           <p className={`text-center text-2xl font-bold ${roboto}`}>
             Төстэй блогууд

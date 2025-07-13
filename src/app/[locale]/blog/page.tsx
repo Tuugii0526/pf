@@ -20,19 +20,23 @@ export default async function Page({
   return (
     <div className="flex flex-col gap-2 ">
       <div className="flex flex-col gap-4">
-        {data.posts.map((blog) => (
+        {data?.posts?.map((blog) => (
           <Blog
             key={`${blog.language}-${blog.title}`}
             blog={blog}
             locale={locale}
           />
         ))}
-        <Pagination
-          pagination={data?.pagination}
-          lang={locale}
-          category={"all"}
-          currentPage={1}
-        />
+        {data?.posts?.length ? (
+          <Pagination
+            pagination={data?.pagination}
+            lang={locale}
+            category={"all"}
+            currentPage={1}
+          />
+        ) : (
+          <div>no blog</div>
+        )}
       </div>
     </div>
   );

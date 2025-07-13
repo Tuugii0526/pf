@@ -1,1 +1,1 @@
-export type CategoriesT = "programming" | "ted-talk" | "all";
+export type CategoriesT = "programming-problem" | "all" | "year-2025";

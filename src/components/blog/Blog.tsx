@@ -2,6 +2,8 @@ import { languageCodes } from "@/lib/types/i18n";
 import { BlogPost } from "@/lib/types/blog";
 import Link from "next/link";
 import { Categories } from "./Categories";
+import { dm_serif_display, roboto } from "@/lib/fonts/fonts";
+import { DateShowing } from "../DateShowing";
 
 export const Blog = ({
   blog,
@@ -10,20 +12,32 @@ export const Blog = ({
   blog: BlogPost;
   locale: languageCodes;
 }) => {
+  const { createdAt, updatedAt } = blog;
   return (
     <div className="w-full h-full">
-      <Categories categories={blog.categories} />
-      <Link href={`/${locale}/blog${blog?.slug}`}>
-        <div className="m-auto w-[90%] flex flex-col text-blog-title-foreground font-bold text-[25px]  bg-blog-card-background  p-4 rounded-2xl cursor-pointer  text-2xl ">
-          <p>{blog.title}</p>
-          <p className="text-[14px] text-blog-start-text  my-2">
-            {blog.startText}
+      <div>
+        <Link href={`/${locale}/blog${blog?.slug}`}>
+          <p
+            className={`text-[25px] font-bold hover:text-header-foreground transition ${roboto.className}`}
+          >
+            {blog.title}
           </p>
-          <p className="text-[14px]">
-            <span className="text-blog-author-foreground">By</span>{" "}
-            <span className="text-blog-title-foreground ">{blog.author}</span>
-          </p>
-        </div>
+        </Link>
+        <DateShowing
+          updatedAt={updatedAt}
+          createdAt={createdAt}
+          insideBlog={false}
+        />
+        <Categories categories={blog.categories} />
+        <p className="text-[14px]   my-2 text-blog-text-foreground">
+          {blog.startText} ...
+        </p>
+      </div>
+      <Link
+        className={`${dm_serif_display.className} hover:text-header-foreground transition`}
+        href={`/${locale}/blog${blog?.slug}`}
+      >
+        Read more
       </Link>
     </div>
   );

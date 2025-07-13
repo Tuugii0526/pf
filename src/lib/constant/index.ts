@@ -28,9 +28,9 @@ export const COLORS = [
   "#A7FAE6",
 ];
 export const CATEGORIES: { [key in CategoriesT]: CategoriesT } = {
-  programming: "programming",
-  "ted-talk": "ted-talk",
+  "programming-problem": "programming-problem",
   all: "all",
+  "year-2025": "year-2025",
 };
 
 export const PER_PAGE_BLOGS = 3;
@@ -40,13 +40,13 @@ export const CATEGORIES_INFO: {
     description: string;
   };
 } = {
-  programming: {
+  "programming-problem": {
     emoji: "🛜 👾",
     description: "Программын мэдлэгээ дээшлүүлцгээе.",
   },
-  "ted-talk": {
+  "year-2025": {
     emoji: "🗣️",
-    description: "Бид мундаг хүмүүсээс юу сонссон вэ ?",
+    description: "2025 ",
   },
   all: {
     emoji: "~~~;)~~~~",
