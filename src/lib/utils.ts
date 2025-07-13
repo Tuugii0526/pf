@@ -176,14 +176,7 @@ export function getBlog({
   const result = pathMap.get(`${lang}/${fileName}`);
   if (!result) {
     const { metadata, content } = readMDXFile(
-      path.join(
-        process.cwd(),
-        "src",
-        "content",
-        lang,
-        "blog",
-        fileName + "/index.mdx"
-      )
+      path.join("src", "content", lang, "blog", fileName + "/index.mdx")
     );
     if (content && metadata) {
       pathMap.set(`${lang}/${fileName}`, {
