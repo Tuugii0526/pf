@@ -1,0 +1,77 @@
+---
+date: 2025-07-11T11:30:36.287Z
+category: "programming-problem"
+title: How to get the maximum profit by buying and selling stocks?
+author: Tuguldur
+language: en
+---
+
+In this blog, we will solve a problem that comes up in 🌳🌳 Amazon 🌳🌳 interviews.
+
+## Problem:
+
+You are given an array containing stock prices for consecutive days. You can buy a stock and sell it on a subsequent day. You can only hold one share at a time. If you can buy and sell as many times as you want, what is the maximum profit you can make?
+Example:
+
+<Explanation
+  explanations={[
+    {
+      id: 1,
+      input: "arr[] = [100, 180, 260, 310, 40, 535, 695]",
+      output: "865",
+      explanation:
+        "You buy the stock on day 0 and sell on day 3, making a profit of 310-100=210. Then, you buy on day 4 and sell on day 6, making a profit of 695 - 40 = 655. The total profit is 865.",
+    },
+  ]}
+/>
+## Solution:
+
+**Main Idea**: The total possible profit is the sum of the differences between
+the lowest and highest values of each consecutive increasing segment. For arr[]=[100,
+180, 260, 310, 40, 535, 695], the consecutive increasing segments are from 100 to
+310 and from 40 to 695. For arr[]=[4, 2, 2, 2, 4], the consecutive increasing segment
+is from 2 to 4.
+
+1. We will use a variable named min to store the lowest value of each
+   consecutive segment. If a value smaller than min appears, our increasing sequence
+   has ended. Therefore, we add the possible profit from this sequence (maxProfit) to
+   the total profit and update the value of min.
+2. If there is a value greater than min,
+   this element could be either decreasing or increasing compared to the previous element.
+   Therefore, we define this logic inside the else block.
+
+- If it is less than the previous
+  element, it means our sequence has ended. In this case, we add the profit and consider
+  that a new sequence is starting.
+- If it is greater than the previous element, we will
+  calculate the potential profit for this sequence.
+
+```
+class Solution {
+    int stockBuySell(int arr[]) {
+        // code here
+        int profit =0;
+        int min=arr[0];
+        int maxProfit=0;
+        int length=arr.length;
+        for(int i=1;i<length;i++){
+            if(arr[i]<min){
+                min=arr[i];
+                profit+=maxProfit;
+                maxProfit=0;
+            }
+            else {
+               if(arr[i]<arr[i-1]){
+                   min=arr[i];
+                    profit+=maxProfit;
+                maxProfit=0;
+               }
+               else {
+                   maxProfit=Math.max(maxProfit,arr[i]-min);
+               }
+            }
+        }
+        return profit+maxProfit;
+    }
+}
+```

@@ -4,7 +4,8 @@ export interface BlogPost {
   title: string;
   author: string;
   username: string;
-  date: Date;
+  updatedAt: string;
+  createdAt: string;
   categories: string[];
   slug: string;
   language: languageCodes;

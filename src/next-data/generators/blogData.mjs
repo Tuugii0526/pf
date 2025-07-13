@@ -19,13 +19,14 @@ const getFrontMatter = (filename, source) => {
     title = "Try like an ant , little at a time",
     author = "Tuguldur",
     username,
-    date = new Date(),
+    createdAt = new Date(),
+    updatedAt = new Date(),
     category = "",
     language,
   } = graymatter(source).data;
 
   // We also use publishing years as categories for the blog
-  const publishYear = new Date(date).getUTCFullYear();
+  const publishYear = new Date(createdAt).getUTCFullYear();
 
   // Provides a full list of categories for the Blog Post which consists of
   // all = (all blog posts), publish year and the actual blog category
@@ -43,7 +44,8 @@ const getFrontMatter = (filename, source) => {
     title,
     author,
     username,
-    date: new Date(date),
+    createdAt: new Date(createdAt),
+    updatedAt: new Date(updatedAt),
     categories,
     slug,
     language,
