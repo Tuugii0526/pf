@@ -42,7 +42,9 @@ const components = {
   ol: (props: React.ComponentProps<"ol">) => (
     <ol className="list-decimal mb-[12px] list-inside" {...props} />
   ),
-
+  a: (props: React.ComponentProps<"a">) => (
+    <a {...props} className="underline"></a>
+  ),
   code: Code,
   pre: (props: React.ComponentProps<"pre">) => (
     <pre
