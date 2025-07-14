@@ -1,10 +1,11 @@
 import { CategoriesT } from "@/lib/types/categories";
 import { languageCodes } from "@/lib/types/i18n";
 import { getBlogsByCategory } from "@/lib/utils";
-import { CATEGORIES, CATEGORIES_INFO } from "@/lib/constant";
+import { CATEGORIES } from "@/lib/constant";
 import { Blog } from "./blog/Blog";
 import { Pagination } from "./Pagination";
-import { dm_serif_display } from "@/lib/fonts/fonts";
+
+import { CategoryIntro } from "./CategoryIntro";
 export const CategoryLayout = ({
   category,
   lang,
@@ -22,13 +23,7 @@ export const CategoryLayout = ({
 
   return (
     <div className="flex flex-col gap-5">
-      <div className="flex flex-col items-center">
-        <p className={`text-[45px] ${dm_serif_display.className}`}>
-          {category}
-        </p>
-        <p>{CATEGORIES_INFO[category].emoji} </p>
-        <p>{CATEGORIES_INFO[category].description} </p>
-      </div>
+      <CategoryIntro lang={lang} category={category} />
       <div className="mb-[60px]">
         {data.posts.map((blog) => (
           <Blog
