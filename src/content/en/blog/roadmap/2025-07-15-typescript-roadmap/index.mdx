@@ -1,0 +1,60 @@
+---
+createdAt: 2025-07-15T08:08:00.586Z
+updatedAt: 2025-07-15T08:08:00.586Z
+category: roadmap
+title: roadmap.sh typescript
+author: Tuguldur
+language: en
+---
+
+Things we learned new after generally going through the typescript roadmap from roadmap.sh site
+
+In order to strengthen our knowledge, we are generally looking at **roadmaps** from [this site](https://roadmap.sh/). This time we looked at the [typescript](https://roadmap.sh/typescript) roadmap.
+
+### Let's list the new knowledge we learned.
+
+1. Typescript compiles (means converts) and becomes javascript.
+2. We learned the type difference between **unknown and any**. The unknown type is used for unknown types. From the unknown type, you need to validate the type using typeof, instanceof, etc.
+3. You can declare constants using the **enum** type. After compilation, it remains as a constant.
+
+4. The **tuple** type is used to specify that the elements inside an **array** are exactly like this. For example, you can store color codes in an array.
+   type RGBcolor= [number,number,number]
+   const redColor= [255,0,0]
+
+5. I'm still wondering how to use the never type.
+6. We looked at **type assertion** using **as**, **satisfies**, **! or no-null-assertion**, **as const**.
+7. In type guards (type guards, type narrowing), there are `type-predicates`.
+   This validates that a variable is of this type. The isString function in the example code validates. If you look carefully, there's `value is string`.
+
+```function isString(value: unknown): value is string {
+return typeof value === 'string';
+}
+function example(x: unknown) {
+if (isString(x)) {
+// We can now call any 'string' method on 'x'.
+x.toUpperCase();
+} else {
+console.log(x);
+}
+}
+```
+
+8. Function overloading makes functions super powerful.
+9. Using generic types, you define general types.
+10. Decorators are used to give additional capabilities to functions.
+11. Utility types make it easier for you to define types. In the example below, **Record** is a utility type.
+
+```
+const user:Record<string, number | string>={
+name:'john',
+age:10
+}
+```
+
+12. What is conditional type?
+13. Using namespace, internal module, external module, namespace augmentation, global augmentation, we can make our code more organized.
+
+If you want to learn more about this in detail, you can check these sites:
+
+1. [roadmap.sh](https://roadmap.sh/)
+2. [official doc](https://www.typescriptlang.org/docs/)

@@ -20,18 +20,19 @@ export const getNavs = (langCode: string) => [
 ];
 export const Languages: languageCodes[] = ["en", "mn"];
 export const COLORS = [
-  "#COE6FF",
-  "#FFD6F8",
-  "#EED2FF",
-  "#FDE876",
-  "#FFD4A0",
-  "#A7FAE6",
+  ["#EED2FF", "#734098"],
+  ["#FDE876", "#735f00"],
+  ["#FFD4A0", "#a53725"],
+  ["#c0e6ff", "#325c80"],
+  ["#30bd9c", "#006d5d"],
+  ["#ffd6e8", "#9f1853"],
 ];
 export const CATEGORIES: { [key in CategoriesT]: CategoriesT } = {
   "programming-problem": "programming-problem",
   all: "all",
   "year-2025": "year-2025",
   heard: "heard",
+  roadmap: "roadmap",
 };
 
 export const PER_PAGE_BLOGS = 3;
@@ -77,6 +78,16 @@ export const CATEGORIES_INFO: {
       emoji: "👂",
       description:
         "Дуслыг хураавал далай . Та бүхэнд өөрийн сонссоноо бага ч болов хүргэнээ.",
+    },
+  },
+  roadmap: {
+    en: {
+      emoji: "🚏🚗🗺️🧭",
+      description: "Roadmap",
+    },
+    mn: {
+      emoji: "🚏🚗🗺️🧭",
+      description: "Газрын зураг",
     },
   },
 };
