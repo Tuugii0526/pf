@@ -1,6 +1,8 @@
+import { getMonthString } from "./get-month-string";
+
 export const getDateString = ({ date }: { date: Date }) => {
-  const month = date.getMonth();
-  const day = date.getDay();
+  const month = getMonthString(date.getMonth());
+  const day = date.getDate();
   const year = date.getFullYear();
-  return `${year}-${month}-${day}`;
+  return `${month} ${day}, ${year}`;
 };

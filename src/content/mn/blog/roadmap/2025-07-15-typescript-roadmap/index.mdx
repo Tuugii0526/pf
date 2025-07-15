@@ -1,0 +1,65 @@
+---
+createdAt: 2025-07-15T08:08:00.586Z
+updatedAt: 2025-07-15T08:08:00.586Z
+category: roadmap
+title: roadmap.sh typescript
+author: Төгөлдөр
+language: mn
+---
+
+roadmap.sh сайтын typescript ийн газрын зургийг ерөнхийлөн гүйлгээд шинээр сонссон зүйлс
+
+Мэдлэгээ бататгах үүднээс бид **roadmap** уудыг [Энэхүү сайтаас](https://roadmap.sh/) ерөнхийлөн харж байгаа . Энэ удаа бид [typescript](https://roadmap.sh/typescript) ийн газрын зургийг харлаа .
+
+### Бид шинээр сонссон эрдэмээ жагсаая .
+
+1. Typescript нь compile(хувиргахыг хэлнэ) хийгээд javascript болдог ажээ .
+2. **unknown болон any** ийн type ялгааг танилаа . unknown type үл мэдэгдэх төрөл дээр тавьдаг . Та unknown төрлөөс typeof , instanceof гэх мэт төрлөө баталгаажуулах ажээ .
+3. **enum\*\*** гэх төрлөөр тогтмол зүйлийг зарлаж өгвөл зүгээр . \*\*compile хийсний дараа тогтмол болон үлддэг байгаа .
+
+4. **tuple** төрөл нь **array** доторх элементууд яг ийм байна шүү гэдгийг зааж өгөхөд ашигладаг . Жишээ нь та өнгөний кодыг array дотор хадгалж болно .
+
+```
+type RGBcolor= [number,number,number]
+const redColor= [255,0,0]
+```
+
+5. **never** төрлийг яаж ашиглахын бол гэж одоо хүртэл гайхаж байна .
+6. **Төрөл баталгаажуулах** (type assertion) дээр **as** , **satisfies**, **! буюу no-null-assertion** , **as const** эдгээрийг харлаа .
+7. Төрөл хамгаалах (type guards , type narrowing) дээр `type-predicates` байдаг ажээ .
+   Энэ нь хувьсагчийг энэ төрлийнх шүү гэж баталгаажуулдаг юм байна . Жишээ кодон дээрх isString функц нь баталгуулж байна . Та сайн харвал `value is string` байгаа .
+
+```
+function isString(value: unknown): value is string {
+  return typeof value === 'string';
+}
+
+function example(x: unknown) {
+  if (isString(x)) {
+    // We can now call any 'string' method on 'x'.
+    x.toUpperCase();
+  } else {
+    console.log(x);
+  }
+}
+```
+
+8. **function** overloading гэдэг нь функцийг супер хүчтэй болгодог .
+9. **Generic type** ашиглан та ерөнхий төрөл тодорхойлдог .
+10. **decorator** нь функад нэмэлт чадвар олгоход ашиглана .
+11. **utility** types нь таныг төрөл тодорхойлоход илүү хөнгөвчилж өгдөг . Доорх жишээнд **Record** нь utility type .
+
+```
+const user:Record<string, number | string>={
+    name:'john',
+    age:10
+}
+```
+
+12. **conditional type** гэж юу юум болоо ?
+13. namespace , internal module , external module , namespace augmentation , global augmentation ашиглаад бид кодоо илүү цэгцтэй болгох боломжтой ажээ .
+
+Та энэ талаар илүү дэлгэрэнгүй сурахыг хүсвэл эдгээр сайтаас харж болно .
+
+1. [roadmap.sh](https://roadmap.sh/)
+2. [official doc](https://www.typescriptlang.org/docs/)

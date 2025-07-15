@@ -9,13 +9,15 @@ export const Categories = ({ categories }: { categories: string[] }) => {
     <div className=" w-full flex gap-2 ">
       {categories.map((c) => {
         const firstLetterCharCode = c.codePointAt(0) || 0;
-        const color = COLORS[firstLetterCharCode % COLORS.length];
+        const [bgcolor, textcolor] =
+          COLORS[firstLetterCharCode % COLORS.length];
         return (
           <Link
             key={c}
             className="text-blog-category-foreground px-[9px] rounded-2xl  text-[12.6px]"
             style={{
-              backgroundColor: color,
+              backgroundColor: bgcolor,
+              color: textcolor,
             }}
             href={`/${currentLanguage}/blog/${c}`}
           >

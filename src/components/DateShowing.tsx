@@ -1,5 +1,6 @@
 import { getDateString } from "@/lib/get-date-string";
 import { Clock } from "lucide-react";
+import { LastUpdated } from "./LastUpdated";
 const clockIcon = (
   <Clock className="text-[#717171] font-bold" width={15} height={15} />
 );
@@ -29,7 +30,7 @@ export const DateShowing = ({
   }
   return (
     <div className="flex gap-1 items-center mb-1">
-      {clockIcon}
+      <LastUpdated />
       <p className="text-[12.8px] text-[#717171] font-bold">
         {updatedDateString}
       </p>
