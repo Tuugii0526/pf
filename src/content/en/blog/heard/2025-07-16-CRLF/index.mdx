@@ -1,0 +1,43 @@
+---
+createdAt: 2025-07-16T08:37:14.878Z
+updatedAt: 2025-07-16T08:37:14.878Z
+category: heard
+title: What is CRLF?
+author: Tuguldur
+language: en
+---
+
+We will share what we heard about CRLF from Hanselman's series _The Computer Stuff They Didn't Teach You_.
+
+Before we typed on computers, we used typewriters.
+
+![][typewriter]
+
+As you can see from the image above, there were two components called **carriage return** and **line feed**. The purpose of the **carriage return** was to bring the writing tool back from the end of the paper to the beginning, while the **line feed** helped move the paper down one line.
+
+<iframe
+  className="
+  w-full h-auto sm:h-[315px]"
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/TtiBhktB4Qg?si=0tZigdIjRFWdjPEY"
+  title="YouTube video player"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerPolicy="strict-origin-when-cross-origin"
+  allowFullScreen
+></iframe>
+
+To display text in an orderly way on computers, we use **\r for carriage return** and **\n for line feed**. However, operating systems handle this differently.
+
+Windows operating systems use **\r\n**, while modern Mac and Linux systems use **\n**.
+
+So, if you open a file created on Windows in a Linux system, it may not display correctly.
+
+Text editors like VSCode and Notepad can display any file correctly. Also, in Git, you can configure and convert line endings when merging code.
+
+Useful resources:
+
+1. [https://www.geeksforgeeks.org/operating-systems/difference-between-carriage-return-and-line-feed/](https://www.geeksforgeeks.org/operating-systems/difference-between-carriage-return-and-line-feed/)
+
+[typewriter]: https://res.cloudinary.com/dj9zffzlu/image/upload/q_auto/f_auto/v1752659941/typewriter_nfhahw.png

@@ -2,6 +2,7 @@ import { roboto } from "@/lib/fonts/fonts";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Explanation } from "./programming-problem/Explanation";
 import { highlight } from "sugar-high";
+import Image from "next/image";
 function Code({
   children,
   ...props
@@ -52,6 +53,18 @@ const components = {
       {...props}
     />
   ),
+  img: (props: { alt: string; src: string }) => {
+    return (
+      <Image
+        src={props.src}
+        alt={props.alt}
+        width={0}
+        height={0}
+        className="h-auto w-auto object-contain"
+        sizes="(min-width:768px) 200vw,500vw"
+      />
+    );
+  },
 };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function CustomMdx(props: any) {

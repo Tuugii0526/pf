@@ -167,6 +167,17 @@ export function getBlog({
   lang: languageCodes;
   fileName: string;
 }) {
+  // const { metadata, content } = readMDXFile(
+  //   path.join(
+  //     process.cwd(),
+  //     "src",
+  //     "content",
+  //     lang,
+  //     "blog",
+  //     fileName + "/index.mdx"
+  //   )
+  // );
+  // return { metadata, content };
   if (!pathMap.has(`${lang}/${fileName}`)) {
     return {
       metadata: null,
