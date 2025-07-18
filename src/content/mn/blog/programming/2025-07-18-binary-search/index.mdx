@@ -1,0 +1,38 @@
+---
+createdAt: 2025-07-18T12:13:07.178Z
+updatedAt: 2025-07-18T12:13:07.178Z
+category: "programming-problem"
+title: Хоёртын хайлт
+author: Төгөлдөр
+language: mn
+---
+
+Binary search гэж юу вэ ?
+
+Эрэмбэлэгдсэн элементүүдээс тодорхой элементийг хайхад ашигладаг алгоритм . Хэрхэн хайдаг вэ гэвэл :
+
+1. Голын тоог олно .
+2. Хэрвээ голын тооноос манай хайж байгаа элемент бага бол хайлтаа голын тооноос бага тоонуудаас хайна .
+3. Хэрвээ голын тооноос манай хайж байгаа элемент их бол хайлтаа голын тооноос их тоонуудаас хайна .
+
+![Binary search](https://res.cloudinary.com/dj9zffzlu/image/upload/q_auto/f_auto/v1752842408/binnary-search-_qdryev.webp)
+
+```
+bool binarySearch(int* arr,int left,int right ,int searchingNumber){
+int mid;
+while(left<=right){
+    mid=left+(right-left)/2;
+    if(arr[mid]==searchingNumber){
+        return true;
+    }
+    if(arr[mid]<searchingNumber)
+    {
+        right=mid-1;
+    }
+    else {
+        left=mid+1;
+    }
+}
+return false;
+}
+```
