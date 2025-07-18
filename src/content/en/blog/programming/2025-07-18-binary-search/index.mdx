@@ -1,0 +1,38 @@
+---
+createdAt: 2025-07-18T12:13:07.178Z
+updatedAt: 2025-07-18T12:13:07.178Z
+category: "programming-problem"
+title: Binary Search
+author: Tuguldur
+language: en
+---
+
+What is Binary search?
+
+An algorithm used to search for a specific element from sorted elements. How does it search:
+
+1. Find the middle number.
+2. If our searching element is smaller than the middle number, then search among the numbers smaller than the middle number.
+3. If our searching element is larger than the middle number, then search among the numbers larger than the middle number.
+
+![Binary search](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.geeksforgeeks.org%2Fdsa%2Fbinary-search%2F&psig=AOvVaw2SLtXpj_7wv7iB2NsQHwQ9&ust=1752927707317000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCICH1-Gyxo4DFQAAAAAdAAAAABAE)
+
+```
+bool binarySearch(int* arr,int left,int right ,int searchingNumber){
+int mid;
+while(left<=right){
+    mid=left+(right-left)/2;
+    if(arr[mid]==searchingNumber){
+        return true;
+    }
+    if(arr[left]<arr[mid])
+    {
+        right=mid-1;
+    }
+    else {
+        left=mid+1;
+    }
+}
+return false;
+}
+```
