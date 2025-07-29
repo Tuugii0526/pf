@@ -1,5 +1,11 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Blogs writing
+**/heard/2025-07-20-write-great-code
+**/heard/2025-07-24-port-process
 today.md
+
+
 src/data/blog-data.json
 /node_modules
 /.pnp

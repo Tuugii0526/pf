@@ -3,6 +3,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { Explanation } from "./programming-problem/Explanation";
 import { highlight } from "sugar-high";
 import Image from "next/image";
+import { CodeForLangs } from "./CodeForLangs";
 function Code({
   children,
   ...props
@@ -65,6 +66,7 @@ const components = {
       />
     );
   },
+  CodeForLangs: CodeForLangs,
 };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function CustomMdx(props: any) {
